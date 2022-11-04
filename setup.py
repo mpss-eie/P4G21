@@ -5,7 +5,7 @@ setup(
     packages=find_packages(include=['proceso']),
     version='0.0.1',
     description='Proyecto 4 de IE0405 - Modelos Probabilísticos de Señales y Sistemas',
-    author='Estudiante A, Estudiante B, Estudiante C',
+    author='Daymer Alberto Vargas Vargas, Fabricio Jose Arguijo Cantillo, Jafet Soto Arrieta',
     license='MIT',
     install_requires=[
         'numpy',
