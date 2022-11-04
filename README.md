@@ -2,7 +2,7 @@
 #### IE0405 - Modelos Probabilísticos de Señales y Sistemas
 ##### Proyecto 4: Procesos aleatorios (segundo ciclo del 2022)
 
-- Daymer Alberto Vargas Vargas, carné
+- Daymer Alberto Vargas Vargas, C08286
 - Fabricio Jose Arguijo Cantillo, carné
 - Jafet Soto Arrieta, B77543
 
