@@ -56,14 +56,14 @@ def datos_demanda(inicio, fin):
 fecha_inicio = input('Fecha inicio (YYYYMMDD):)                         #Solicitamos la fercha de inicio.
 fecha_fin = input('Fecha final  (YYYYMMDD):)                            #Solicitamos la fercha de fin.
 '''
-#------------------------Variables-------------------------
+#------------------Variables de inicio---------------------
 fecha_inicio = f'20200101'                                              #Fecha de incio para solicitud de datos.
 fecha_fin = f'20200102'                                                 #Fecha final para solicitud de datos.
 
 #----------------------------------------------------------
-#ASIGNACIÓN_1:
+#===========Se almacenan los datos para analizar===========
 datos_demanda_df = datos_demanda(fecha_inicio , fecha_fin)               #Llamada a la funcion datos_demanda. Generamos el df.
-DF_demanda_hora = pd.read_csv('Datos_Demanda.csv')                      #Caragamos el Data Frame generado por datos_demanda.
+DF_demanda_hora = pd.read_csv('Datos_Demanda.csv')                       #Caragamos el Data Frame generado por datos_demanda.
 
 print (DF_demanda_hora)
 #----------------------------------------------------------
