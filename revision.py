@@ -64,8 +64,6 @@ fecha_fin = f'20200102'                                                 #Fecha f
 #===========Se almacenan los datos para analizar===========
 datos_demanda_df = datos_demanda(fecha_inicio , fecha_fin)               #Llamada a la funcion datos_demanda. Generamos el df.
 DF_demanda_hora = pd.read_csv('Datos_Demanda.csv')                       #Caragamos el Data Frame generado por datos_demanda.
-
-print (DF_demanda_hora)
 #----------------------------------------------------------
 
 # SECCIÓN A: Función de densidad de probabilidad
@@ -99,7 +97,7 @@ print(B5)
 # SECCIÓN C: Estacionaridad
 
 # 6. Estacionaridad en sentido amplio
-C6 = estacionaridad.wss()
+C6 = estacionaridad.wss(datos_demanda_df)
 print(C6)
 
 # 7. Promedio temporal
