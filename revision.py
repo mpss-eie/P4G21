@@ -36,7 +36,7 @@ def datos_demanda(inicio, fin):
     ==========
     '''
     api_url = f'https://apps.grupoice.com/CenceWeb/data/sen/json/DemandaMW?inicio={inicio}&fin={fin}'    #Modificamos la URL.
-    print('Se extraen los datos para:\nInicio:',inicio,'Fin:',fin)                        #Imprimimos la direccion URL.
+    print('Se extraen los datos para:\nInicio:',inicio,'Fin:',fin)      #Imprimimos la direccion URL.
 
     datos_demanda_df = requests.get(api_url).json()                     #Variable para los datos extraídos del URL.
     datos_demanda_df = pd.DataFrame(datos_demanda_df['data'])           #Generamos el Dataframe de los datos.
@@ -53,8 +53,8 @@ def datos_demanda(inicio, fin):
 ---En caso de que desee solicitar fechas al usuario     ---
 ---aplique el siguiente codigo:                         ---
 -----------------------------------------------------------
-fecha_inicio = input('Fecha inicio (YYYYMMDD):)                         #Solicitamos la fercha de inicio.
-fecha_fin = input('Fecha final  (YYYYMMDD):)                            #Solicitamos la fercha de fin.
+fecha_inicio = input('Fecha inicio (YYYYMMDD):)                         #Solicitamos la fecha de inicio.
+fecha_fin = input('Fecha final  (YYYYMMDD):)                            #Solicitamos la fecha de fin.
 '''
 #------------------Variables de inicio---------------------
 fecha_inicio = f'20200101'                                              #Fecha de incio para solicitud de datos.

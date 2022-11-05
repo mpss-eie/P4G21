@@ -11,5 +11,6 @@ setup(
         'numpy',
         'scipy',
         'requests',
+        'pandas',
     ],
 )

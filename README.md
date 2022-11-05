@@ -3,7 +3,7 @@
 ##### Proyecto 4: Procesos aleatorios (segundo ciclo del 2022)
 
 - Daymer Alberto Vargas Vargas, C08286
-- Fabricio Jose Arguijo Cantillo, carné
+- Fabricio Jose Arguijo Cantillo, B70645
 - Jafet Soto Arrieta, B77543
 
 # Paquete `proceso`
