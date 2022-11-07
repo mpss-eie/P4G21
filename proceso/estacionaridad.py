@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import adfuller
 
 def wss(DF):
@@ -7,6 +8,8 @@ def wss(DF):
     print("----------Resultados de Dickey-fuller:----------")
     DF_DICKEYFULLER = adfuller(DF['MW'], autolag='AIC')
     DF_SALIDA = pd.Series(DF_DICKEYFULLER[0:4], index = ['Test Statistic','p-value','#lags used','number of observations used'])
+    
+    
     for key, value in DF_DICKEYFULLER[4].items():
         DF_SALIDA['critical value (%s)'%key]= value
     

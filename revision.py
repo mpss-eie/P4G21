@@ -16,9 +16,9 @@ from datetime import time
 from scipy import stats
 from scipy.stats import pearsonr
 #----------------------------------------------------------
-#======================Asignaciones:=======================
+#=================Carga de Datos diários:==================
 #----------------------------------------------------------
-#------1-Función para importar los datos del CENCE:--------
+#--------Función para importar los datos del CENCE:--------
 def datos_demanda(inicio, fin):
     '''
     ==========
