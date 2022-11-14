@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import json
 import pandas as pd
 
-
 def demanda():
     with open('datos.json') as file:
         datos = json.load(file)
@@ -58,7 +57,6 @@ def demandaConURL(inicio, fin):
 
     print('--------Data Frame generado con exito.--------')
     return datos_demanda_df  # Se retornar los datos en un data frame.
-
 
 def densidad(datos_df):
     '''Función densidad().
@@ -151,45 +149,74 @@ def densidad(datos_df):
 
     return c_t, log_t, scale_t
 
+def grafica(datos_df):
+    '''Función grafica().
 
-def grafica(dayDemanda_datos_df):
+    Esta función encarga de almacenar los parámetros c, log y scale para posterior
+    utilizarlos para generar la función pdf que permite la visualización de todas
+    las graficas a distintas horas del día, donde la potencia es su común denominador.
+
+    Parameters
+    ----------
+    hora : int
+        Variable con la hora deseada.
+    datos_hora : array
+        Contiene los datos de consumo a una hora especifica de forma temporal.
+    modelo : string
+        Almacena el nombre de la distribución utilizada.
+    datos_df : DataFrame
+        Una variable global que contiene los datos anuales de potencia.
+    mejorAjuste_Horas : fitter
+        Contiene información de los parámetros del modelo.
+    param : diccionario
+        contiene los parámetros c, log, scale a utilizar.
+    c : array
+        Variable con los parámetros de la distribución para c con todas las horas del día.
+    log : array
+        Variable con los parámetros de la distribución para log con todas las horas del día.
+    scale : array
+        Variable con los parámetros de la distribución para scale con todas las horas del día.
+    '''
 
     # Arreglos para almacenar los datos de las distribuciones.
     c = []
     log = []
     scale = []
 
-    # Ciclo para obtener la informacion y parametros de todas las horas.
+    # Ciclo para obtener la información y parámetros c, log y scale de todas las horas.
     for hora in range(0, 24):
         datos_hora = []
-        # Ciclo para recorrer todo el dataFrame en busqueda de las hora especificada
-        for i in range(hora, len(dayDemanda_datos_df.index), 24):
+        # Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
+        for i in range(hora, len(datos_df.index), 24):
             # El dato de una hora especifica aparecerá cada 24 filas, por las 24 horas del días.
             # Almacena la potencia en la hora especifica
-            datos_hora.append(float(dayDemanda_datos_df.MW[i]))
+            datos_hora.append(float(datos_df.MW[i]))
 
-        # Seleccion del modelo.
+        # Selección del modelo.
         modelo = 'genlogistic'
 
-        # Parametros para la hora especifica.
+        # Parámetros para la hora especifica.
         mejorAjuste_Horas = Fitter(datos_hora, distributions=[modelo])
         mejorAjuste_Horas.fit()
 
-        # Parametros de la distribucion.
+        # Parámetros de la distribución.
         params = mejorAjuste_Horas.fitted_param
 
-        # Guardar los datosen los arreglos, su posicion indica su hora.
+        # Guardar los datos en los arreglos, su posición indica su hora.
         c.append(params[modelo][0])
         log.append(params[modelo][1])
         scale.append(params[modelo][2])
 
-    x = np.arange(1000, 1800)
+    #Vector de potencia.
+    x = np.arange(800, 1800)
 
+    #Configuración para mostrar las 24 pdf juntas.
     fig, (ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9,
           ax10, ax11) = plt.subplots(12, 1, sharex=True)
     fig2, (ax12, ax13, ax14, ax15, ax16, ax17, ax18, ax19, ax20,
            ax21, ax22, ax23) = plt.subplots(12, 1, sharex=True)
 
+    #Asignación de parámetros para las graficas mostrar
     ax0.plot(x, genlogistic.pdf(x, c[0], log[0], scale[0]))
     ax0.set_ylabel("00:00")
 
@@ -265,45 +292,78 @@ def grafica(dayDemanda_datos_df):
 
     plt.show()
 
+def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
+    '''Función grafica().
 
-def probabilidad(dayDemanda_datos_df, t1, t2, p1, p2):
+    Esta función encarga de obtener la probabilidad de ocurrencia donde un evento
+    tenga una potencia entre dos rangos (potencia_1 y potencia_2), entre ciertas horas especificas
+    (hora_1,hora_2). Esto lo hace mediante la cdf de cada una de las horas del día, tomando
+    las horas específicas y sumando la probabilidad entre los rangos de potencia, para finalmente
+    obtener el la probabilidad de ocurrencia.
+
+    Parameters
+    ----------
+    hora : int
+        Variable con la hora deseada.
+    datos_hora : array
+        Contiene los datos de consumo a una hora especifica de forma temporal.
+    modelo : string
+        Almacena el nombre de la distribución utilizada.
+    datos_df : DataFrame
+        Una variable global que contiene los datos anuales de potencia.
+    mejorAjuste_Horas : fitter
+        Contiene información de los parámetros del modelo.
+    param : diccionario
+        contiene los parámetros c, log, scale a utiliar.
+    c : array
+        Variable con los parámetros de la distribución para c con todas las horas del día.
+    log : array
+        Variable con los parámetros de la distribución para log con todas las horas del día.
+    scale : array
+        Variable con los parámetros de la distribución para scale con todas las horas del día.
+    '''
     # Arreglos para almacenar los datos de las distribuciones.
     c = []
     log = []
     scale = []
 
-    # Ciclo para obtener la informacion y parametros de todas las horas.
+    # Ciclo para obtener la información y parámetros c, log y scale de todas las horas.
     for hora in range(0, 24):
         datos_hora = []
-        # Ciclo para recorrer todo el dataFrame en busqueda de las hora especificada
-        for i in range(hora, len(dayDemanda_datos_df.index), 24):
+        # Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
+        for i in range(hora, len(datos_df.index), 24):
             # El dato de una hora especifica aparecerá cada 24 filas, por las 24 horas del días.
             # Almacena la potencia en la hora especifica
-            datos_hora.append(float(dayDemanda_datos_df.MW[i]))
+            datos_hora.append(float(datos_df.MW[i]))
 
-        # Seleccion del modelo.
+        # Selección del modelo.
         modelo = 'genlogistic'
 
-        # Parametros para la hora especifica.
+        # Parámetros para la hora especifica.
         mejorAjuste_Horas = Fitter(datos_hora, distributions=[modelo])
         mejorAjuste_Horas.fit()
 
-        # Parametros de la distribucion.
+        # Parámetros de la distribución.
         params = mejorAjuste_Horas.fitted_param
 
-        # Guardar los datosen los arreglos, su posicion indica su hora.
+        # Guardar los datos en los arreglos, su posición indica su hora.
         c.append(params[modelo][0])
         log.append(params[modelo][1])
         scale.append(params[modelo][2])
 
-    pt = 0
-    times = 0
+    #Sumatoria de probabilidades del rango de horas.
+    sumatoria_horas = 0
+    #Cantidad de horas sumadas
+    repeticion_horas = 0
 
-    for i in range(t1, t2):
-        pt = pt + (genlogistic.cdf(p2, c[i], log[i], scale[i]) -
-                   genlogistic.cdf(p1, c[i], log[i], scale[i]))
-        times = times + 1
+    #Ciclo para recorrer el rango de horas, y extraer la probabilidad de cada una
+    #de ellas al rango de potencia especificado.
+    for i in range(hora_1, hora_2):
+        sumatoria_horas = sumatoria_horas + (genlogistic.cdf(potencia_2, c[i], log[i], scale[i]) -
+                   genlogistic.cdf(potencia_1, c[i], log[i], scale[i]))
+        repeticion_horas = repeticion_horas + 1
 
-    p_total = pt/times
+    #Se divide la sumatoria de las horas entre la cantidad de horas sumadas.
+    ocurrencia_total = sumatoria_horas/repeticion_horas
 
-    return p_total
+    return ocurrencia_total
