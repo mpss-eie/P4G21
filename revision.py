@@ -70,22 +70,32 @@ DF_demanda_hora = pd.read_csv('Datos_Demanda.csv')                       #Caraga
 
 #print (DF_demanda_hora)
 
+
+# SECCIÓN A: Procesos
+
 # 0. Datos de demanda de potencia
-A0 = proceso.demanda(dayDemanda_datos_df)
-#Esta funcion retorna a C(t), para que la utilicen.
+A0 = proceso.demanda()
 #print(A0)
 
 # 1. Función de densidad del proceso aleatorio
-A1 = proceso.densidad(A0)
-print(A1)
+c , log ,scale = proceso.densidad(A0)
+print("#########################################################")
+print(f"Polinomio para C:{c}")
+print(f"Polinomio para log:{log}")
+print(f"Polinomio para scale:{scale}")
+print("#########################################################")
 
 # 2. Gráfica de la secuencia aleatoria
-A2 = proceso.grafica()
-print(A2)
+A2 = proceso.grafica(A0)
 
 # 3. Probabilidad de tener un consumo p1 < P < p2 en t1 < T < t2
-A3 = proceso.probabilidad()
-print(A3)
+# datas a ingresar(dataframe, hora Inicial, hora Final, potencia Inicial, potencia Final)
+A3 = proceso.probabilidad(A0,0,23,1000,1500)
+print("#########################################################")
+print("La probabilidad de ocurrencia para los rangos especificados es de:")
+print(f"{A3}")
+print("#########################################################")
+
 
 # SECCIÓN B: Momentos
 
