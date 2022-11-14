@@ -6,11 +6,13 @@ import matplotlib.pyplot as plt
 import json
 import pandas as pd
 
+
 def demanda():
     with open('datos.json') as file:
         datos = json.load(file)
     df = pd.DataFrame(datos['data'])
     return df
+
 
 def demandaConURL(inicio, fin):
     '''Función datos_demanda(inicio,fin).
@@ -57,6 +59,7 @@ def demandaConURL(inicio, fin):
 
     print('--------Data Frame generado con exito.--------')
     return datos_demanda_df  # Se retornar los datos en un data frame.
+
 
 def densidad(datos_df):
     '''Función densidad().
@@ -149,6 +152,7 @@ def densidad(datos_df):
 
     return c_t, log_t, scale_t
 
+
 def grafica(datos_df):
     '''Función grafica().
 
@@ -207,16 +211,16 @@ def grafica(datos_df):
         log.append(params[modelo][1])
         scale.append(params[modelo][2])
 
-    #Vector de potencia.
+    # Vector de potencia.
     x = np.arange(800, 1800)
 
-    #Configuración para mostrar las 24 pdf juntas.
+    # Configuración para mostrar las 24 pdf juntas.
     fig, (ax0, ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9,
           ax10, ax11) = plt.subplots(12, 1, sharex=True)
     fig2, (ax12, ax13, ax14, ax15, ax16, ax17, ax18, ax19, ax20,
            ax21, ax22, ax23) = plt.subplots(12, 1, sharex=True)
 
-    #Asignación de parámetros para las graficas mostrar
+    # Asignación de parámetros para las graficas mostrar
     ax0.plot(x, genlogistic.pdf(x, c[0], log[0], scale[0]))
     ax0.set_ylabel("00:00")
 
@@ -292,6 +296,7 @@ def grafica(datos_df):
 
     plt.show()
 
+
 def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
     '''Función grafica().
 
@@ -351,19 +356,19 @@ def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
         log.append(params[modelo][1])
         scale.append(params[modelo][2])
 
-    #Sumatoria de probabilidades del rango de horas.
+    # Sumatoria de probabilidades del rango de horas.
     sumatoria_horas = 0
-    #Cantidad de horas sumadas
+    # Cantidad de horas sumadas
     repeticion_horas = 0
 
-    #Ciclo para recorrer el rango de horas, y extraer la probabilidad de cada una
-    #de ellas al rango de potencia especificado.
+    # Ciclo para recorrer el rango de horas, y extraer la probabilidad de cada una
+    # de ellas al rango de potencia especificado.
     for i in range(hora_1, hora_2):
         sumatoria_horas = sumatoria_horas + (genlogistic.cdf(potencia_2, c[i], log[i], scale[i]) -
-                   genlogistic.cdf(potencia_1, c[i], log[i], scale[i]))
+                                             genlogistic.cdf(potencia_1, c[i], log[i], scale[i]))
         repeticion_horas = repeticion_horas + 1
 
-    #Se divide la sumatoria de las horas entre la cantidad de horas sumadas.
+    # Se divide la sumatoria de las horas entre la cantidad de horas sumadas.
     ocurrencia_total = sumatoria_horas/repeticion_horas
 
     return ocurrencia_total
