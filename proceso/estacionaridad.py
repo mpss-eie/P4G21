@@ -1,10 +1,9 @@
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import adfuller
 
 def wss(A0):
-    print(A0)
     print("============Modulo Estacionaridad :=============")
     print("=======Estacionaridad en sentido amplio:========")
     print("----------Resultados de Dickey-fuller:----------")
@@ -19,9 +18,18 @@ def wss(A0):
         print('Serie temporal estacionaria en setido amplio.')
     return '------------------------------------------------'
 
-def prom_temporal(A0):
-    PROMEDIO_TEMPORAL = np.convolve(A0, np.ones(8), 'valid')/8
-    return float(PROMEDIO_TEMPORAL)
+def prom_temporal(C,A0):
+    print("===============Promedio temporal:===============")
+    A0['fechaHora'] = pd.to_datetime(A0['fechaHora'])
+    A0 = A0.sort_values(by='fechaHora')
+    PROMEDIO_TEMPORAL_ADD = A0['MW'].rolling(7).mean()
+    A0['Promedio_Temporal'] = PROMEDIO_TEMPORAL_ADD
+
+    PROMEDIO_TEMPORAL = np.convolve(C, np.ones(8), 'valid')/8
+
+    return float(PROMEDIO_TEMPORAL), A0
 
 def ergodicidad(A0):
-    return 'Aquí está la ergodicidad.'
+    print(A0.head())
+  
+    return '------------------------------------------------'
