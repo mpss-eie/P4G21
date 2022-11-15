@@ -1,11 +1,4 @@
-import json
-import requests
-import pandas as pd 
-from pandas import json_normalize
 import numpy as np
-from scipy import stats
-from scipy.stats import genlogistic
-import matplotlib.pyplot as plt
 
 # Se define la función de autocorrelación
 
