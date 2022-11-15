@@ -1,5 +1,5 @@
 
-from proceso import proceso
+from proceso import  espectro, momentos, proceso, estacionaridad
 
 # ----------Importamos las bibliotecas necesarias:----------
 import requests
@@ -96,17 +96,19 @@ print(B4)
 # 5. Autocovarianza
 B5 = momentos.autocovarianza()
 print(B5)
+
 # SECCIÓN C: Estacionaridad
 # 6. Estacionaridad en sentido amplio
-C6 = estacionaridad.wss(datos_demanda_df)
+C6 = estacionaridad.wss(c)
 print(C6)
 # 7. Promedio temporal
-C7 = estacionaridad.prom_temporal()
+C7, C71 = estacionaridad.prom_temporal(c,A0)
 print(C7)
 # 8. Ergodicidad
-C8 = estacionaridad.ergodicidad()
+C8 = estacionaridad.ergodicidad(A0, C71)
 print(C8)
 # SECCIÓN D: Características espectrales
 # 9. Función de densidad espectral de potencia
+
 D9 = espectro.psd()
 print(D9)
