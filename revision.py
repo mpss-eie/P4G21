@@ -88,3 +88,25 @@ print("#########################################################")
 print("La probabilidad de ocurrencia para los rangos especificados es de:")
 print(f"{A3}")
 print("#########################################################")
+
+# SECCIÓN B: Momentos
+# 4. Autocorrelación
+B4 = momentos.autocorrelacion()
+print(B4)
+# 5. Autocovarianza
+B5 = momentos.autocovarianza()
+print(B5)
+# SECCIÓN C: Estacionaridad
+# 6. Estacionaridad en sentido amplio
+C6 = estacionaridad.wss(datos_demanda_df)
+print(C6)
+# 7. Promedio temporal
+C7 = estacionaridad.prom_temporal()
+print(C7)
+# 8. Ergodicidad
+C8 = estacionaridad.ergodicidad()
+print(C8)
+# SECCIÓN D: Características espectrales
+# 9. Función de densidad espectral de potencia
+D9 = espectro.psd()
+print(D9)
