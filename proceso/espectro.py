@@ -1,10 +1,7 @@
-from fitter import Fitter
-import numpy as np
-import pandas as pd 
-from pandas import json_normalize
-from scipy import stats
-from scipy.stats import genlogistic
-import matplotlib.pyplot as plt
+def psd():
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import requests
 
 # Se obtendrá el espectro de potencia para una hora determinada
 # en todos los días del año, por lo cual es necesario definir un array
