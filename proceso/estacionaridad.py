@@ -3,13 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import adfuller
 
+
 def wss(A0):
     '''Función wss().
 
     Esta funcion determina la estacionaridad en sentido amplio
     de una secuencia aleatorea, manteniedo los valores validos
     en un factor del 5% de diferencia
-    
+
     Parameters:
     ----------
     A0                  : DataFrame
@@ -23,24 +24,27 @@ def wss(A0):
     print("=======Estacionaridad en sentido amplio:========")
     print("----------Resultados de Dickey-fuller:----------")
     DF_DICKEYFULLER = adfuller(A0, autolag='AIC')
-    DF_SALIDA = pd.Series(DF_DICKEYFULLER[0:4], index = ['Test Statistic','p-value','#lags used','number of observations used'])
+    DF_SALIDA = pd.Series(DF_DICKEYFULLER[0:4], index=[
+                          'Test Statistic', 'p-value', '#lags used', 'number of observations used'])
     for key, value in DF_DICKEYFULLER[4].items():
-        DF_SALIDA['critical value (%s)'%key]= value
-    
+        DF_SALIDA['critical value (%s)' % key] = value
+
     if (DF_SALIDA[5] < DF_SALIDA[0]):
-        print('Serie temporal no estacionaria en setido amplio.\n\tTest estático:\t',DF_SALIDA[0],'\n\t5%:\t\t',DF_SALIDA[5])
+        print('Serie temporal no estacionaria en setido amplio.\n\tTest estático:\t',
+              DF_SALIDA[0], '\n\t5%:\t\t', DF_SALIDA[5])
     else:
         print('Serie temporal estacionaria en setido amplio.')
     return '------------------------------------------------'
 
-def prom_temporal(C,A0):
+
+def prom_temporal(C, A0):
     '''Función prom_temporal().
-    
+
     Esta funcion determina el promedio temporal para los valores
     de consumo MW, se calcula tanto el vcalor numerico sujeto a 
     la funcion 'C' como el vector de promedio temporal para el
     data frame de las horas.
-    
+
     Parameters:
     ----------
     C                   : list
@@ -62,13 +66,15 @@ def prom_temporal(C,A0):
 
     return float(PROMEDIO_TEMPORAL), A0
 
-def ergodicidad(A0,PROMEDIO_TEMPORAL):
+
+def ergodicidad(A0, PROMEDIO_TEMPORAL):
     '''Función ergodicidad().
+
     Esta funcion determina la ergodicidad de la secuencia aleatoria 
     del consumo de MW que está en A0, utiliza el promedio temporal 
     calculado anteriormente y mantiene los valores validos dentro
     del 5% de error.
-    
+
     Parameters:
     ----------
     A0                  : DataFrame
@@ -85,12 +91,12 @@ def ergodicidad(A0,PROMEDIO_TEMPORAL):
         Valor del porcentaje de error, que debe ser menor a 5%.
     '''
     print("====================Ergodicidad:================")
-    #Calcular el promedio estadístico:
+    # Calcular el promedio estadístico:
     MEDIA_ESTANDAR = np.mean(A0['MW'])
-    
+
     PROMEDIO_TEMPORAL_MEAN = PROMEDIO_TEMPORAL['Promedio_Temporal'].mean()
 
-    #Porcentaje de error:
+    # Porcentaje de error:
     PORCENTAJE_ERROR = abs(MEDIA_ESTANDAR-PROMEDIO_TEMPORAL_MEAN)
     print(PORCENTAJE_ERROR)
     if PORCENTAJE_ERROR < 0.5:
