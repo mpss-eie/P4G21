@@ -1,5 +1,5 @@
 
-from proceso import proceso,estacionaridad
+from proceso import proceso, estacionaridad
 
 # ----------Importamos las bibliotecas necesarias:----------
 import requests
@@ -88,7 +88,7 @@ print("#########################################################")
 print("La probabilidad de ocurrencia para los rangos especificados es de:")
 print(f"{A3}")
 print("#########################################################")
-
+'''
 # SECCIÓN B: Momentos
 # 4. Autocorrelación
 B4 = momentos.autocorrelacion()
@@ -96,17 +96,20 @@ print(B4)
 # 5. Autocovarianza
 B5 = momentos.autocovarianza()
 print(B5)
+'''
 # SECCIÓN C: Estacionaridad
 # 6. Estacionaridad en sentido amplio
-C6 = estacionaridad.wss(A0)
+C6 = estacionaridad.wss(c)
 print(C6)
 # 7. Promedio temporal
-C7 = estacionaridad.prom_temporal(A0)
+C7 = estacionaridad.prom_temporal(c)
 print(C7)
 # 8. Ergodicidad
 C8 = estacionaridad.ergodicidad()
 print(C8)
 # SECCIÓN D: Características espectrales
 # 9. Función de densidad espectral de potencia
+'''
 D9 = espectro.psd()
 print(D9)
+'''
