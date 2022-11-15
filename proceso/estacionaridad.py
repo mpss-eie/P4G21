@@ -11,7 +11,7 @@ def wss(A0):
     Parameters:
     ----------
     A0                  : DataFrame
-        URL de la información para el proyecto.
+        Datos de copnsumo de potencia.
     DF_DICKEYFULLER     : Dta frame
         Valores de prueba de DickeyFuller para estacionaridad.
     DF_SALIDA           : Data frame
@@ -43,11 +43,11 @@ def prom_temporal(C,A0):
     C                   : list
         Secuencia aleatoria de consumo de MW.
     A0                  : DataFrame
-        URL de la información para el proyecto.
+        Datos de copnsumo de potencia.
     PROMEDIO_TEMPORAL_ADD: Dta frame
         Almacena los valores para el nuevo vector de A0.
     PROMEDIO_TEMPORAL   : float
-        Valor numerico del promedio temporal para la funcion 'C.
+        Valor numérico del promedio temporal para la funcion 'C.
     ==========
     '''
     print("===============Promedio temporal:===============")
@@ -60,7 +60,31 @@ def prom_temporal(C,A0):
 
     return float(PROMEDIO_TEMPORAL), A0
 
-def ergodicidad(A0):
-    print(A0.head())
-  
+def ergodicidad(A0,PROMEDIO_TEMPORAL):
+    '''Esta funcion determina la ergodicidad de la secuencia aleatoria 
+        del consumo de MW que está en A0, utiliza el promedio temporal 
+        calculado anteriormente y mantiene los valores validos dentro
+        del 5% de error.
+    ==========
+    Parameters:
+    ----------
+    A0                  : DataFrame
+        Datos de copnsumo de potencia.
+    PROMEDIO_TEMPORAL   : float
+        Valor numérico del promedio temporal para la funcion 'C.
+    ==========
+    '''
+    print("====================Ergodicidad:================")
+    #Calcular el promedio estadístico:
+    MEDIA_ESTANDAR = np.mean(A0['MW'])
+    
+    PROMEDIO_TEMPORAL_MEAN = PROMEDIO_TEMPORAL['Promedio_Temporal'].mean()
+
+    #Porcentaje de error:
+    PORCENTAJE_ERROR = abs(MEDIA_ESTANDAR-PROMEDIO_TEMPORAL_MEAN)
+    print(PORCENTAJE_ERROR)
+    if PORCENTAJE_ERROR < 0.5:
+        print('-------------El proceo es ergódico-------------')
+    else:
+        print('------------El proceso no es ergódico----------')
     return '------------------------------------------------'

@@ -1,5 +1,5 @@
 
-from proceso import espectro, momentos, proceso, estacionaridad
+from proceso import  espectro, momentos, proceso, estacionaridad
 
 # ----------Importamos las bibliotecas necesarias:----------
 import requests
@@ -105,7 +105,7 @@ print(C6)
 C7, C71 = estacionaridad.prom_temporal(c,A0)
 print(C7)
 # 8. Ergodicidad
-C8 = estacionaridad.ergodicidad(A0)
+C8 = estacionaridad.ergodicidad(A0, C71)
 print(C8)
 # SECCIÓN D: Características espectrales
 # 9. Función de densidad espectral de potencia
