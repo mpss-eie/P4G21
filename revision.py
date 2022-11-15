@@ -1,5 +1,5 @@
 
-from proceso import proceso
+from proceso import proceso,estacionaridad
 
 # ----------Importamos las bibliotecas necesarias:----------
 import requests
@@ -98,10 +98,10 @@ B5 = momentos.autocovarianza()
 print(B5)
 # SECCIÓN C: Estacionaridad
 # 6. Estacionaridad en sentido amplio
-C6 = estacionaridad.wss(datos_demanda_df)
+C6 = estacionaridad.wss(A0)
 print(C6)
 # 7. Promedio temporal
-C7 = estacionaridad.prom_temporal()
+C7 = estacionaridad.prom_temporal(A0)
 print(C7)
 # 8. Ergodicidad
 C8 = estacionaridad.ergodicidad()
