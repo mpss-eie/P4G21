@@ -11,7 +11,7 @@ def wss(A0):
     Parameters:
     ----------
     A0                  : DataFrame
-        Datos de copnsumo de potencia.
+        Datos de consumo de potencia.
     DF_DICKEYFULLER     : Dta frame
         Valores de prueba de DickeyFuller para estacionaridad.
     DF_SALIDA           : Data frame
@@ -43,7 +43,7 @@ def prom_temporal(C,A0):
     C                   : list
         Secuencia aleatoria de consumo de MW.
     A0                  : DataFrame
-        Datos de copnsumo de potencia.
+        Datos de consumo de potencia.
     PROMEDIO_TEMPORAL_ADD: Dta frame
         Almacena los valores para el nuevo vector de A0.
     PROMEDIO_TEMPORAL   : float
@@ -69,9 +69,17 @@ def ergodicidad(A0,PROMEDIO_TEMPORAL):
     Parameters:
     ----------
     A0                  : DataFrame
-        Datos de copnsumo de potencia.
-    PROMEDIO_TEMPORAL   : float
-        Valor numérico del promedio temporal para la funcion 'C.
+        Datos de consumo de potencia.
+    PROMEDIO_TEMPORAL   : DataFrame
+        Data frame con los valor calculados para el promedio temporal,
+        almacenados en PROMEDIO_TEMPORAL['Promedio_Temporal'].
+    PROMEDIO_TEMPORAL_MEAN: int
+        Valor promedio del vector PROMEDIO_TEMPORAL['Promedio_Temporal'].
+    MEDIA_ESTADAR       : int
+        ALmacena el valor de la media estandar para comprar el error con
+        el promedio temporal.
+    PORCENTAJE_ERROR    : int
+        Valor del porcentaje de error, que debe ser menor a 5%.
     ==========
     '''
     print("====================Ergodicidad:================")
