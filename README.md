@@ -18,7 +18,7 @@ un evento en un rango de tiempo y potencia determinadas.
 graficar las funciones de densidad de probabilidad (pdf) de cada hora del día, y obtener la ocurrencia de
 un evento en un rango de tiempo y potencia determinadas.
 
-### Funciones
+### Funciones de `proceso`
 
 #### Demanda(inicio,final)
 > La funcion demanda se encarga de retorna un dataFrame con los datos de consumo de potencia entre fechas especificas. Recibe como parámetros la fecha de inicio y fecha final.
