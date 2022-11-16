@@ -1,47 +1,29 @@
 import numpy as np
 
-# Se define la función de autocorrelación
+def autocorrelacion(datos_df,t1,t2):
 
-def autocorrelacion():
-    
-# Se consideran los datos de la primera hora asignada 
-periodo1 = datos_hora(horas[0]).assign(Index =
-range (len (datos_hora(horas[0])))).set_index('Index')['MW'] 
+    datos_t1 = []
+    for i in range(t1, len(datos_df.index), 24):
+        datos_t1.append(float(datos_df.MW[i]))
 
-# Se consideran los datos de la segunda hora asignada
-periodo2 = datos_hora(horas[1]).assign(Index =
-range (len (datos_hora(horas[1])))).set_index ('Index')['MW']
+    datos_t2 = []
+    for j in range(t2, len(datos_df.index), 24):
+        datos_t2.append(float(datos_df.MW[j]))
 
-# Se calcula la correlación mediante el uso de pandas
+    correlacion = np.corrcoef(datos_t1,datos_t2)
 
-correlacion = periodo1.correlacion(periodo2, method = 'pearson') 
-return correlacion, periodo1, periodo2
+    return correlacion
 
-correlacion = autocorrelacion() 
+def autocovarianza(datos_df,t1,t2):
 
-print("El coeficiente obtenido de correlación de Pearson entre las horas "
-+ str(horas[0]) + ":00 y " + str(horas[1]) + ":00 es de: \n", correlacion[0])
+    datos_t1 = []
+    for i in range(t1, len(datos_df.index), 24):
+        datos_t1.append(float(datos_df.MW[i]))
 
-# Se define la función de autocovarianza
+    datos_t2 = []
+    for j in range(t2, len(datos_df.index), 24):
+        datos_t2.append(float(datos_df.MW[j]))
 
-def autocovarianza():
-    
-# Se consideran los datos de la primera hora asignada 
-periodo1 = datos_hora(horas[0]).assign(Index =
-range (len (datos_hora(horas[0])))).set_index('Index')['MW'] 
+    covarianza = np.cov(datos_t1,datos_t2)
 
-# Se consideran los datos de la segunda hora asignada
-periodo2 = datos_hora(horas[1]).assign(Index =
-range (len (datos_hora(horas[1])))).set_index('Index')['MW']
-
-# Es necesario guardar en una serie los dos periodos
-consumoP1 = pd.Series(data=periodo1) 
-consumoP2 = pd.Series(data=periodo2) 
-
-# Se calcula la covarianza mediante el uso de pandas
-covarianza= consumoP1.cov(consumoP2)
-return covarianza
-
-covarianza= autocovarianza()
-
-print ("La covarianza obtenida entre la hora establecida " + str(horas[0]) + ":00 y la hora " + str(horas[1]) + ":00 es de " + str(covarianza))
+    return covarianza
