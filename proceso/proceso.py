@@ -8,58 +8,28 @@ import pandas as pd
 
 
 def demanda():
-    with open('datos.json') as file:
-        datos = json.load(file)
-    df = pd.DataFrame(datos['data'])
-    return df
-
-
-def demandaConURL(inicio, fin):
-    '''Función datos_demanda(inicio,fin).
+    '''Función demanda().
 
     Esta función se encarga de retornar un dataFrame con
-    los datos de consumo de potencia en un rango determinado
-    de tiempo como parámetro de entrada, se encarga de acceder
-    a la base de datos del grupoice obtener los datos en formato
-    JSON, para posterior seleccionar solo los datos deseados y
-    almacenarlos en un dataFrame para su posterior análisis.
-    En el data DataFrame almacena fecha/hora y potencia
+    los datos de consumo de potencia almacenados en un archivo .json.
 
     Parameters
     ----------
-    inicio : str
-    fin : str
-    api_url : str
-        Una variable que construye el URL de la página a visitar.
-    respuesta : str
-        variable que almacena los datos obtenidos de la base de dato del
-        grupoice.
     datos : JSON
-        Convierte la información extraída en formato JSON.
+        Almacena el archivo .json en el programa.
 
     Returns
     -------
-    dataFrame : dataFrame
-        Retorna los datos obtenidos de la base de datos en un dataFrame
+    df : dataFrame
+        Retorna los datos obtenidos del archivo .json en un dataFrame
         de pandas.
     '''
-    # Modificamos la URL.
-    api_url = f'https://apps.grupoice.com/CenceWeb/data/sen/json/DemandaMW?inicio={inicio}&fin={fin}'
-
-    # Imprimimos el rango de fechas
-    print('Se extraen los datos para:\nInicio:', inicio, 'Fin:', fin)
-
-    # Variable para los datos extraídos del URL.
-    datos_demanda_jason = requests.get(api_url).json()
-    # Generamos el Dataframe de los datos.
-    datos_demanda_df = pd.DataFrame(datos_demanda_jason['data'])
-    datos_demanda_df['fechaHora'] = pd.to_datetime(
-        datos_demanda_df['fechaHora'])
-    datos_demanda_df = datos_demanda_df.sort_values(by='fechaHora')
-
-    print('--------Data Frame generado con exito.--------')
-    return datos_demanda_df  # Se retornar los datos en un data frame.
-
+    #Extraccion del los datos del archivo datos.json
+    with open('datos.json') as file:
+        datos = json.load(file)
+    #Creacion del dataFrame a partir de un archivo json.
+    df = pd.DataFrame(datos['data'])
+    return df
 
 def densidad(datos_df):
     '''Función densidad().
@@ -151,7 +121,6 @@ def densidad(datos_df):
     # print(scale_t)
 
     return c_t, log_t, scale_t
-
 
 def grafica(datos_df):
     '''Función grafica().
@@ -295,7 +264,6 @@ def grafica(datos_df):
     ax23.set_xlabel("Potencia")
 
     plt.show()
-
 
 def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
     '''Función grafica().
