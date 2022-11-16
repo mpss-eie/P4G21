@@ -67,11 +67,16 @@ de consumo MW, se calcula tanto el vcalor numerico sujeto a
 la funcion 'C' como el vector de promedio temporal para el
 data frame de las horas.
 
-#### ergodicidad()
+#### ergodicidad(A0)
 >Esta funcion determina la ergodicidad de la secuencia aleatoria 
 del consumo de MW que está en A0, utiliza el promedio temporal 
 calculado anteriormente y mantiene los valores validos dentro
 del 5% de error.
 
-## Resultados()
+## Resultados `estacionaridad`
+#### WSS(A0)
 >
+#### estacionaridad(c,A0)
+>
+#### ergodicidad(A0,C71)
+> 
