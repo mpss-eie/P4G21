@@ -97,9 +97,8 @@ def ergodicidad(A0, PROMEDIO_TEMPORAL):
     PROMEDIO_TEMPORAL_MEAN = PROMEDIO_TEMPORAL['Promedio_Temporal'].mean()
 
     # Porcentaje de error:
-    PORCENTAJE_ERROR = abs(MEDIA_ESTANDAR-PROMEDIO_TEMPORAL_MEAN)
-    print(PORCENTAJE_ERROR)
-    if PORCENTAJE_ERROR < 0.5:
+    PORCENTAJE_ERROR = abs(MEDIA_ESTANDAR-PROMEDIO_TEMPORAL_MEAN)*100
+    if PORCENTAJE_ERROR < 5:
         print('-------------El proceo es ergódico-------------')
     else:
         print('------------El proceso no es ergódico----------')

@@ -75,8 +75,8 @@ del 5% de error.
 
 ## Resultados `estacionaridad`
 #### WSS(A0)
->
-#### estacionaridad(c,A0)
->
+>Serie temporal estacionaria en setido amplio.
+#### prom_temporal(c,A0)
+>0.10358971035885703
 #### ergodicidad(A0,C71)
-> 
+> '------------El proceso no es ergódico----------'
