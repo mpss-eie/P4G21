@@ -91,11 +91,22 @@ print("#########################################################")
 
 # SECCIÓN B: Momentos
 # 4. Autocorrelación
-B4 = momentos.autocorrelacion()
-print(B4)
+t1 = 3
+t2 = 12
+
+B4 = momentos.autocorrelacion(A0,t1,t2)
+print("#########################################################")
+print(f"La autocorrelacion entre las horas {t1} y {t2}:")
+print(f"{B4[0][1]}")
+print("#########################################################")
+
 # 5. Autocovarianza
-B5 = momentos.autocovarianza()
-print(B5)
+
+B5 = momentos.autocovarianza(A0,t1,t2)
+print("#########################################################")
+print(f"La Autocovarianza entre las horas {t1} y {t2}:")
+print(f"{B5[0][1]}")
+print("#########################################################")
 
 # SECCIÓN C: Estacionaridad
 # 6. Estacionaridad en sentido amplio
