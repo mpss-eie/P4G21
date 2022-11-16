@@ -61,7 +61,7 @@ la probabilidad de que el consumo de potencia esté entre 1000 y 1500 a todo el 
 #### WSS(A0)
 >Esta funcion determina la estacionaridad en sentido amplio de una secuencia aleatorea, manteniedo los valores validos en un factor del 5% de diferencia.
 
-#### estacionaridad(c,A0)
+#### prom_temporal(c,A0)
 >Esta funcion determina el promedio temporal para los valores
 de consumo MW, se calcula tanto el vcalor numerico sujeto a 
 la funcion 'C' como el vector de promedio temporal para el
