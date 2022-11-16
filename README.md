@@ -53,3 +53,25 @@ estas variables contienen el polinomio de orden 7 necesario para construir la P(
 la probabilidad de que el consumo de potencia esté entre 1000 y 1500 a todo el día es de 0.5875250420977342.
 
 (Descripción y análisis de resultados)
+
+## Módulo `estacionaridad`
+>El objetivo de este módulo es ser capaz de determinar si una secuencia aleatorea es estacionaria en sentido amplio, para luedo determinar su promedio temporal y finalmente determinar si la secuecia es ergodica o no.
+
+### Funciones de `estacionaridad`
+#### WSS(A0)
+>Esta funcion determina la estacionaridad en sentido amplio de una secuencia aleatorea, manteniedo los valores validos en un factor del 5% de diferencia.
+
+#### estacionaridad(c,A0)
+>Esta funcion determina el promedio temporal para los valores
+de consumo MW, se calcula tanto el vcalor numerico sujeto a 
+la funcion 'C' como el vector de promedio temporal para el
+data frame de las horas.
+
+#### ergodicidad()
+>Esta funcion determina la ergodicidad de la secuencia aleatoria 
+del consumo de MW que está en A0, utiliza el promedio temporal 
+calculado anteriormente y mantiene los valores validos dentro
+del 5% de error.
+
+## Resultados()
+>
