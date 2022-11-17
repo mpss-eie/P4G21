@@ -6,14 +6,14 @@ def autocorrelacion(datos_df, t1, t2):
 
     Esta función se encarga de obtener la autocorrelación entre dos arreglo
     de datos, estos datos es la potencia consumida a dos horas distintas
-    del dia, esta se hace utilizando una función de numpy.
+    del día, esta se hace utilizando una función de numpy.
 
     Parameters
     ----------
     datos_t1 : array
-        Contendrá los datos de consumo a una hora en especifico.
+        Contendrá los datos de consumo a una hora en específico.
     datos_t2 : array
-        Contendrá los datos de consumo a una hora en especifico distinta.
+        Contendrá los datos de consumo a una hora en específico distinta.
 
     Returns
     -------
@@ -41,14 +41,14 @@ def autocovarianza(datos_df, t1, t2):
 
     Esta función se encarga de obtener la Autocovarianza entre dos arreglo
     de datos, estos datos es la potencia consumida a dos horas distintas
-    del dia, esta se hace utilizando una función de numpy.
+    del día, esta se hace utilizando una función de numpy.
 
     Parameters
     ----------
     datos_t1 : array
-        Contendrá los datos de consumo a una hora en especifico.
+        Contendrá los datos de consumo a una hora en  específico.
     datos_t2 : array
-        Contendrá los datos de consumo a una hora en especifico distinta.
+        Contendrá los datos de consumo a una hora en  específico distinta.
 
     Returns
     -------
@@ -65,7 +65,7 @@ def autocovarianza(datos_df, t1, t2):
     for j in range(t2, len(datos_df.index), 24):
         datos_t2.append(float(datos_df.MW[j]))
 
-    # Se obtiene la autocovarianza mediante la funcion cov de numpy.
+    # Se obtiene la autocovarianza mediante la función cov de numpy.
     covarianza = np.cov(datos_t1, datos_t2)
 
     return covarianza

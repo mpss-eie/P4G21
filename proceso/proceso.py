@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import json
 import pandas as pd
 
+
 def demanda():
     """Función demanda.
 
@@ -270,12 +271,12 @@ def grafica(datos_df):
 
     ax23.plot(x, genlogistic.pdf(x, c[23], log[23], scale[23]))
     ax23.set_ylabel("23:00")
-    ax23.set_xlabel("Potencia")
+    ax23.set_xlabel("Potencia(MW)")
 
     plt.show()
 
 
-def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
+def probabilidad(datos_df, hora_1, hora_2, p_1, p_2):
     """Función probabilidad.
 
     Esta función encarga de obtener la probabilidad de ocurrencia donde un
@@ -340,20 +341,20 @@ def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
         scale.append(params[modelo][2])
 
     # Sumatoria de probabilidades del rango de horas.
-    sumatoria_horas = 0
+    sumatoria = 0
     # Cantidad de horas sumadas
-    repeticion_horas = 0
+    repeticion = 0
 
     # Ciclo para recorrer el rango de horas, y extraer la probabilidad de cada
     # una de ellas al rango de potencia especificado.
 
     for i in range(hora_1, hora_2):
 
-        sumatoria_horas = sumatoria_horas + (genlogistic.cdf(potencia_2, c[i], log[i], scale[i]) -
-                                             genlogistic.cdf(potencia_1, c[i], log[i], scale[i]))
-        repeticion_horas = repeticion_horas + 1
+        sumatoria = sumatoria + (genlogistic.cdf(p_2, c[i], log[i], scale[i]) -
+                                 genlogistic.cdf(p_1, c[i], log[i], scale[i]))
+        repeticion = repeticion + 1
 
     # Se divide la sumatoria de las horas entre la cantidad de horas sumadas.
-    ocurrencia_total = sumatoria_horas/repeticion_horas
+    ocurrencia_total = sumatoria/repeticion
 
     return ocurrencia_total

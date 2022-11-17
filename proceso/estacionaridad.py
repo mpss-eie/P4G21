@@ -15,12 +15,12 @@ def wss(A0):
     ----------
     A0                  : DataFrame
         Datos de consumo de potencia.
-    DF_DICKEYFULLER     : Dta frame
+    DF_DICKEYFULLER     : Data frame
         Valores de prueba de DickeyFuller para estacionaridad.
     DF_SALIDA           : Data frame
         Contiene los valores finales de las pruebas.
     """
-    print("============Modulo Estacionaridad :=============")
+    print("============Módulo Estacionaridad :=============")
     print("=======Estacionaridad en sentido amplio:========")
     print("----------Resultados de Dickey-fuller:----------")
     DF_DICKEYFULLER = adfuller(A0, autolag='AIC')
@@ -30,12 +30,12 @@ def wss(A0):
         DF_SALIDA['critical value (%s)' % key] = value
 
     if (DF_SALIDA[5] < DF_SALIDA[0]):
-        print('Serie temporal no estacionaria en setido amplio.')
+        print('Serie temporal no estacionaria en sentido amplio.')
         print('\tTest estático:\t',
               DF_SALIDA[0], '\n\t5%:\t\t', DF_SALIDA[5])
 
     else:
-        print('Serie temporal estacionaria en setido amplio.')
+        print('Serie temporal estacionaria en sentido amplio.')
     return '------------------------------------------------'
 
 
@@ -43,8 +43,8 @@ def prom_temporal(C, A0):
     """Función prom_temporal.
 
     Esta funcion determina el promedio temporal para los valores
-    de consumo MW, se calcula tanto el vcalor numerico sujeto a
-    la funcion 'C' como el vector de promedio temporal para el
+    de consumo MW, se calcula tanto el valor numérico sujeto a
+    la función 'C' como el vector de promedio temporal para el
     data frame de las horas.
 
     Parameters:
@@ -56,7 +56,7 @@ def prom_temporal(C, A0):
     PROMEDIO_TEMPORAL_ADD: Dta frame
         Almacena los valores para el nuevo vector de A0.
     PROMEDIO_TEMPORAL   : float
-        Valor numérico del promedio temporal para la funcion 'C.
+        Valor numérico del promedio temporal para la función 'C.
     """
     print("===============Promedio temporal:===============")
     A0['fechaHora'] = pd.to_datetime(A0['fechaHora'])
@@ -72,9 +72,9 @@ def prom_temporal(C, A0):
 def ergodicidad(A0, PROMEDIO_TEMPORAL):
     """Función ergodicidad.
 
-    Esta funcion determina la ergodicidad de la secuencia aleatoria
+    Esta función determina la ergodicidad de la secuencia aleatoria
     del consumo de MW que está en A0, utiliza el promedio temporal
-    calculado anteriormente y mantiene los valores validos dentro
+    calculado anteriormente y mantiene los valores válidos dentro
     del 5% de error.
 
     Parameters:
@@ -87,7 +87,7 @@ def ergodicidad(A0, PROMEDIO_TEMPORAL):
     PROMEDIO_TEMPORAL_MEAN: int
         Valor promedio del vector PROMEDIO_TEMPORAL['Promedio_Temporal'].
     MEDIA_ESTADAR       : int
-        ALmacena el valor de la media estandar para comprar el error con
+        Almacena el valor de la media estándar para comprar el error con
         el promedio temporal.
     PORCENTAJE_ERROR    : int
         Valor del porcentaje de error, que debe ser menor a 5%.
@@ -101,7 +101,7 @@ def ergodicidad(A0, PROMEDIO_TEMPORAL):
     # Porcentaje de error:
     PORCENTAJE_ERROR = abs(MEDIA_ESTANDAR-PROMEDIO_TEMPORAL_MEAN)*100
     if PORCENTAJE_ERROR < 5:
-        print('-------------El proceo es ergódico-------------')
+        print('-------------El proceso es ergódico-------------')
     else:
         print('------------El proceso no es ergódico----------')
     return '------------------------------------------------'
