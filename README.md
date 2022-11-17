@@ -99,6 +99,8 @@ del 5% de error.
 Para determinar que un proceso es esatacionario en sentido amplio se debe cumplir:
 ```math
 E\left [ X(t)) \right ]=\overline{X} (constante)
+```
+```math
 E\left [ X(t) X(t+\tau )\right ]=R_{xx}(\tau)
 ```
 >Resultados generados:
@@ -108,7 +110,7 @@ Serie temporal estacionaria en setido amplio.
 >La función del promedio temporal se define como:
 
 ```math
-A\left [ * \right ]=\lim_{T\rightarrow\infty}\int_{-T}^{T}*dt
+A\left [ * \right ]=\lim_{T\rightarrow\infty}\int_{-T}^{T}* dt
 ```
 >Y para los parametros evaluados la función retorna el valor de:
 0.10358971035885703
