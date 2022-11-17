@@ -42,6 +42,7 @@ estas variables contienen el polinomio de orden 7 necesario para construir la P(
 ```math
 c(t) = 4.57199340*10^{-8}*t^7 - 5.00399491*10^{-6}*t^6 + 2.09913189*10^{-4}*t^5 - 4.32940873*10^{-3}*t^4 + 4.60710835*10^{-2}*t^3 - 2.33562409*10^{-1}*t^2 + 3.68052322*10^{-1}*t + 6.52281140*10^{-1}
 ```
+
 ```math
 log(t) = 2.85391745*10^{-5}*t^7 - 2.39480688*10^{-3}*t^6 + 7.39492808*10^{-2}*t^5 - 9.84120610*10^{-1}*t^4 +
   3.91618298*t^3 + 2.19374917*10^{1}*t^2 - 1.03908708*10^{2}*t + 1.03447704*10^{3}
@@ -106,3 +107,29 @@ x = A\left [ P(t) \right ]
 >La función de ergodicidad determina si el proceso analizado es ergódico o no.
 Utilizando el promedio temporal del proceso. Para que un proceso se concidere ergódico debe.  
 > '------------El proceso no es ergódico----------'
+
+# Paquete `Momentos' 
+
+En este paquete se implementan dos funciones: autocorrelación y autocovarianza. En el caso de la primera función, se desea encontrar la correlación entre variables aleatorias por lo cual se considera t1 y t2. El procedimiento consiste en brindar como parámetros dos horas determinadas, además se guardan los datos de consumo en las variables establecidas. 
+
+Para el caso de la segunda función, se desea encontrar la covarianza entre variables aleatorias por lo cual se considera t1 y t2. Al igual que la función mencionada anteriormente, se toman en cuenta como parámetros dos horas determinadas, para obtener los datos correspondientes.
+
+## Resultados `Momentos'
+Con las funciones empleadas, se obtuvó el valor de la autocorrelación y autocovarianza, para las horas entre 3 y 12. Los resultados obtenidos con acordes a lo esperado según la teoría estudiada en el curso de MPSS.
+
+#### Autocorrelación
+La autocorrelacion entre las horas 3 y 12:
+0.4733539038703084.
+
+#### Autocovarianza
+La Autocovarianza entre las horas 3 y 12:
+1957.7249063051345.
+
+# Paquete `Espectro'
+
+En el caso de este paquete la función psd se encarga de calcular la densidad espectral de potencia de un proceso aleatorio. Para esto se considera como parámetros el dataFrame de consumo de energía, la hora inicial y la hora final. También esta función se encarga de generar la lista de datos como muestra con una cantidad definida de puntos en este caso 800. Con estos puntos se logra crear una gráfica que represente la densidad espectral de potencia para los datos que fueron seleccionados.
+
+## Resultados `Espectro'
+
+Se obtuvo una gráfica que muestra la densidad espectral de potencia, la cual presenta un comportamiento acorde a los esperado. Se realizó la prueba en la terminal con el dato de 17 h. 
+La gráfica obtenida fue bastante precisa, ya que se puede observar que la densidad espectral de potencia se encuentra en un rango acorde según la teoría estudiada en el curso de MPSS. Además la frecuencia se mantuvo entre un rango de 0-50 Hz.

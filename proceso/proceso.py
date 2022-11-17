@@ -346,12 +346,11 @@ def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
 
     # Ciclo para recorrer el rango de horas, y extraer la probabilidad de cada
     # una de ellas al rango de potencia especificado.
-    genlogistic_p1 = genlogistic.cdf(potencia_1, c[i], log[i], scale[i])
-    genlogistic_p2 = genlogistic.cdf(potencia_2, c[i], log[i], scale[i])
 
     for i in range(hora_1, hora_2):
-        sumatoria_horas = sumatoria_horas + (genlogistic_p2 -
-                                             genlogistic_p1)
+
+        sumatoria_horas = sumatoria_horas + (genlogistic.cdf(potencia_2, c[i], log[i], scale[i]) -
+                                             genlogistic.cdf(potencia_1, c[i], log[i], scale[i]))
         repeticion_horas = repeticion_horas + 1
 
     # Se divide la sumatoria de las horas entre la cantidad de horas sumadas.
