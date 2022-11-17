@@ -2,7 +2,7 @@ import numpy as np
 
 
 def autocorrelacion(datos_df, t1, t2):
-    '''Función autocorrelacions().
+    """Función autocorrelacions.
 
     Esta función se encarga de obtener la autocorrelación entre dos arreglo
     de datos, estos datos es la potencia consumida a dos horas distintas
@@ -19,8 +19,7 @@ def autocorrelacion(datos_df, t1, t2):
     -------
     correlacion : float
         Almacena la correlación entre las dos horas de consumo.
-    '''
-
+    """
     # Se obtiene el consumo a la primera hora específica.
     datos_t1 = []
     for i in range(t1, len(datos_df.index), 24):
@@ -38,7 +37,7 @@ def autocorrelacion(datos_df, t1, t2):
 
 
 def autocovarianza(datos_df, t1, t2):
-    '''Función autocovarianza().
+    """Función autocovarianza.
 
     Esta función se encarga de obtener la Autocovarianza entre dos arreglo
     de datos, estos datos es la potencia consumida a dos horas distintas
@@ -55,8 +54,7 @@ def autocovarianza(datos_df, t1, t2):
     -------
     covarianza : float
         Almacena la covarianza entre las dos horas de consumo.
-    '''
-
+    """
     # Se obtiene el consumo a la primera hora específica.
     datos_t1 = []
     for i in range(t1, len(datos_df.index), 24):

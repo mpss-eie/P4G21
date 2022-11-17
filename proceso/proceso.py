@@ -6,9 +6,8 @@ import matplotlib.pyplot as plt
 import json
 import pandas as pd
 
-
 def demanda():
-    """Función demanda().
+    """Función demanda.
 
     Esta función se encarga de retornar un dataFrame con
     los datos de consumo de potencia almacenados en un archivo .json.
@@ -33,7 +32,7 @@ def demanda():
 
 
 def densidad(datos_df):
-    '''Función densidad().
+    """Función densidad.
 
     Esta función encarga de retornar el polinomio de orden 7 de los parámetros
     de la distribución genlogistic c, log y scale, tomando en cuenta todas las
@@ -75,8 +74,7 @@ def densidad(datos_df):
         Variable con con el polinomio de orden 7 para log.
     scale_t : array
         Variable con con el polinomio de orden 7 para scale.
-    '''
-
+    """
     # Arreglos para almacenar los datos de las distribuciones.
     c = []
     log = []
@@ -130,7 +128,7 @@ def densidad(datos_df):
 
 
 def grafica(datos_df):
-    '''Función grafica().
+    """Función grafica.
 
     Esta función encarga de almacenar los parámetros c, log y scale para
     posterior utilizarlos para generar la función pdf que permite la
@@ -160,8 +158,7 @@ def grafica(datos_df):
     scale : array
         Variable con los parámetros de la distribución para scale con todas las
         horas del día.
-    '''
-
+    """
     # Arreglos para almacenar los datos de las distribuciones.
     c = []
     log = []
@@ -279,7 +276,7 @@ def grafica(datos_df):
 
 
 def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
-    '''Función grafica().
+    """Función probabilidad.
 
     Esta función encarga de obtener la probabilidad de ocurrencia donde un
     evento tenga una potencia entre dos rangos (potencia_1 y potencia_2), entre
@@ -311,7 +308,7 @@ def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
     scale : array
         Variable con los parámetros de la distribución para scale con todas las
         horas del día.
-    '''
+    """
     # Arreglos para almacenar los datos de las distribuciones.
     c = []
     log = []
