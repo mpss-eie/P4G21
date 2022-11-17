@@ -15,7 +15,7 @@ print(f"Polinomio para scale:{scale}")
 print("#########################################################")
 
 # 2. Gráfica de la secuencia aleatoria
-#A2 = proceso.grafica(A0)
+A2 = proceso.grafica(A0)
 
 # 3. Probabilidad de tener un consumo p1 < P < p2 en t1 < T < t2
 # datas a ingresar(dataframe, hora Inicial, hora Final, potencia Inicial, potencia Final)
