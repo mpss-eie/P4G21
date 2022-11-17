@@ -108,28 +108,63 @@ x = A\left [ P(t) \right ]
 Utilizando el promedio temporal del proceso. Para que un proceso se concidere ergódico debe.  
 > '------------El proceso no es ergódico----------'
 
-# Paquete `Momentos' 
+# Paquete `Momentos`
 
-En este paquete se implementan dos funciones: autocorrelación y autocovarianza. En el caso de la primera función, se desea encontrar la correlación entre variables aleatorias por lo cual se considera t1 y t2. El procedimiento consiste en brindar como parámetros dos horas determinadas, además se guardan los datos de consumo en las variables establecidas. 
+>En este paquete se implementan dos funciones: autocorrelación y autocovarianza. En el caso de la primera función, se desea encontrar la correlación entre variables aleatorias por lo cual se considera t1 y t2. El procedimiento consiste en brindar como parámetros dos horas determinadas, además se guardan los datos de consumo en las variables establecidas. 
 
-Para el caso de la segunda función, se desea encontrar la covarianza entre variables aleatorias por lo cual se considera t1 y t2. Al igual que la función mencionada anteriormente, se toman en cuenta como parámetros dos horas determinadas, para obtener los datos correspondientes.
+>Para el caso de la segunda función, se desea encontrar la covarianza entre variables aleatorias por lo cual se considera t1 y t2. Al igual que la función mencionada anteriormente, se toman en cuenta como parámetros dos horas determinadas, para obtener los datos correspondientes.
 
-## Resultados `Momentos'
-Con las funciones empleadas, se obtuvó el valor de la autocorrelación y autocovarianza, para las horas entre 3 y 12. Los resultados obtenidos con acordes a lo esperado según la teoría estudiada en el curso de MPSS.
+>Por teoría, se conoce que la correlación entre dos variables X y Y esta dada de la siguiente manera:
+
+```math
+  R_{XY} = E[XY]
+```math
+
+donde:
+
+```math
+    R_{XY}= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} xy f_X,_Y(x,y) dxdy 
+```
+ Por otro lado, la covarianza entre dos variables X y Y esta dada de la siguiente manera:
+
+```math
+  C_{XY}= R_{XY} - E[X]E[Y]
+```math
+
+donde:
+
+```math
+    C_{XY} = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} (x-X)(y-Y) f_X,_Y(x,y) dxdy 
+```
+
+## Resultados `Momentos`
+>Con las funciones empleadas, se obtuvó el valor de la autocorrelación y autocovarianza, para las horas entre 3 y 12. Los resultados obtenidos con acordes a lo esperado según la teoría estudiada en el curso de MPSS.
 
 #### Autocorrelación
-La autocorrelacion entre las horas 3 y 12:
+>La autocorrelacion entre las horas 3 y 12:
 0.4733539038703084.
 
 #### Autocovarianza
-La Autocovarianza entre las horas 3 y 12:
+>La Autocovarianza entre las horas 3 y 12:
 1957.7249063051345.
 
-# Paquete `Espectro'
+# Paquete `Espectro`
 
-En el caso de este paquete la función psd se encarga de calcular la densidad espectral de potencia de un proceso aleatorio. Para esto se considera como parámetros el dataFrame de consumo de energía, la hora inicial y la hora final. También esta función se encarga de generar la lista de datos como muestra con una cantidad definida de puntos en este caso 800. Con estos puntos se logra crear una gráfica que represente la densidad espectral de potencia para los datos que fueron seleccionados.
+>En el caso de este paquete la función psd se encarga de calcular la densidad espectral de potencia de un proceso aleatorio. Para esto se considera como parámetros el dataFrame de consumo de energía, la hora inicial y la hora final. También esta función se encarga de generar la lista de datos como muestra con una cantidad definida de puntos en este caso 800. Con estos puntos se logra crear una gráfica que represente la densidad espectral de potencia para los datos que fueron seleccionados.
 
-## Resultados `Espectro'
+El espectro de densidad de potencia se define de la siguiente manera:
 
-Se obtuvo una gráfica que muestra la densidad espectral de potencia, la cual presenta un comportamiento acorde a los esperado. Se realizó la prueba en la terminal con el dato de 17 h. 
+```math
+    S_{xx}(f) = \lim_{T \to \infty} \frac{E[ X_T(\omega)^{2}]}{2T}
+    ```
+```
+Donde P_{xx} puede ser calculado mediante la siguiente integral en el dominio de la frecuencia:
+
+```math
+    P_{XX}=\frac{1}{2\pi}\int_{-\infty}^{\infty} S_{XX}(\omega) d\omega
+```
+
+## Resultados `Espectro`
+
+>Se obtuvo una gráfica que muestra la densidad espectral de potencia, la cual presenta un comportamiento acorde a los esperado. Se realizó la prueba en la terminal con el dato de 17 h. 
 La gráfica obtenida fue bastante precisa, ya que se puede observar que la densidad espectral de potencia se encuentra en un rango acorde según la teoría estudiada en el curso de MPSS. Además la frecuencia se mantuvo entre un rango de 0-50 Hz.
