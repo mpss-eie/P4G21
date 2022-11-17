@@ -93,19 +93,29 @@ del 5% de error.
 
 ## Resultados `estacionaridad`
 #### WSS(A0)
->Al ingresar los valores del parametro A0 se evalua la función para que no supere 
+>Al ingresar los valores del parametro A0 se evalua la media no puede cambiar más del
+ 5% para ser considerada "constante" y la autocorrelación será "igual" si no cambia 
+ más de un 5%.
+Para determinar que un proceso es esatacionario en sentido amplio se debe cumplir:
+```math
+E\left [ X(t)) \right ]=\overline{X} (constante)
+E\left [ X(t) X(t+\tau )\right ]=R_{xx}(\tau)
+```
+>Resultados generados:
 Serie temporal estacionaria en setido amplio.
 #### prom_temporal(c,A0)
+>Esta función debe calcular el promedio temporal para una fución muestra de la secuencia aleatorea.
 >La función del promedio temporal se define como:
 
 ```math
-x = A\left [ P(t) \right ]
+A\left [ * \right ]=\lim_{T\rightarrow\infty}\int_{-T}^{T}*dt
 ```
 >Y para los parametros evaluados la función retorna el valor de:
 0.10358971035885703
 #### ergodicidad(A0,C71)
 >La función de ergodicidad determina si el proceso analizado es ergódico o no.
-Utilizando el promedio temporal del proceso. Para que un proceso se concidere ergódico debe.  
+Utilizando el promedio temporal del proceso. Para que un proceso se concidere ergódico debe cumplir que 
+>Resultados generados:  
 > '------------El proceso no es ergódico----------'
 
 # Paquete `Momentos`
