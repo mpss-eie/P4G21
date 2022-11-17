@@ -37,16 +37,33 @@ estas variables contienen el polinomio de orden 7 necesario para construir la P(
 ### Resultados `proceso`
 
 #### densidad(DataFrame)
-> C(t) = 4.57199340e-08*t^7 - 5.00399491e-06*t^6 + 2.09913189e-04*t^5 - 4.32940873e-03*t^4 +  4.60710835e-02*t^3 - 2.33562409e-01*t^2 + 3.68052322e-01*t + 6.52281140e-01 MODE LATEX: 4.57199340*10^{-8}*t^7 - 5.00399491*10^{-6}*t^6 + 2.09913189*10^{-4}*t^5 - 4.32940873*10^{-3}*t^4 + 4.60710835*10^{-2}*t^3 - 2.33562409*10^{-1}*t^2 + 3.68052322*10^{-1}*t + 6.52281140*10^{-1}
+> De la función de densidad se obtienen los parámetros para construir la secuencia aleatoria, estos son:
 
-> log(t) = 2.85391745e-05*t^7 - 2.39480688e-03*t^6 + 7.39492808e-02*t^5 - 9.84120610e-01*t^4 +
-  3.91618298e+00 *t^3 + 2.19374917e+01*t^2 - 1.03908708e+02*t + 1.03447704e+03
+```math
+c(t) = 4.57199340*10^{-8}*t^7 - 5.00399491*10^{-6}*t^6 + 2.09913189*10^{-4}*t^5 - 4.32940873*10^{-3}*t^4 + 4.60710835*10^{-2}*t^3 - 2.33562409*10^{-1}*t^2 + 3.68052322*10^{-1}*t + 6.52281140*10^{-1}
+```
+```math
+log(t) = 2.85391745*10^{-5}*t^7 - 2.39480688*10^{-3}*t^6 + 7.39492808*10^{-2}*t^5 - 9.84120610*10^{-1}*t^4 +
+  3.91618298*t^3 + 2.19374917*10^{1}*t^2 - 1.03908708*10^{2}*t + 1.03447704*10^{3}
+```
+```math
+scale(t) = -1.32009676*10^{-6}*t^7 + 7.54402041*10^{-5}*t^6 - 1.40668876*10^{-3}*t^5 + 6.56674366*10^{-3}*t^4 + 7.82871767*10^{-2}*t^3 - 8.31609677*10^{-1}*t^2 + 1.26876083*t + 2.33549419*10^{1}
+```
 
-> scale(t) = -1.32009676e-06*t^7 + 7.54402041e-05*t^6 - 1.40668876e-03*t^5 + 6.56674366e-03*t^4 + 7.82871767e-02*t^3 - 8.31609677e-01*t^2 + 1.26876083e+00*t + 2.33549419e+01
+> La secuencia aleatoria para los datos suministrados p(t) es:
 
-> La secuencia aleatoria para los datos suministrados es de:
+```math
+P(t) = c*\frac{exp(-x)}{(1+exp(-x)^{c+1})}
+```
+> donde:
 
-> P(t) = (4.57199340*10^{-8}*t^7 - 5.00399491*10^{-6}*t^6 + 2.09913189*10^{-4}*t^5 - 4.32940873*10^{-3}*t^4 + 4.60710835*10^{-2}*t^3 - 2.33562409*10^{-1}*t^2 + 3.68052322*10^{-1}*t + 6.52281140*10^{-1})*\frac{exp(-t)}{(1+exp(-t)^{4.57199340*10^{-8}*t^7 - 5.00399491*10^{-6}*t^6 + 2.09913189*10^{-4}*t^5 - 4.32940873*10^{-3}*t^4 + 4.60710835*10^{-2}*t^3 - 2.33562409*10^{-1}*t^2 + 3.68052322*10^{-1}*t + 6.52281140*10^{-1}+1}})
+```math
+c = 4.57199340*10^{-8}*t^7 - 5.00399491*10^{-6}*t^6 + 2.09913189*10^{-4}*t^5 - 4.32940873*10^{-3}*t^4 + 4.60710835*10^{-2}*t^3 - 2.33562409*10^{-1}*t^2 + 3.68052322*10^{-1}*t + 6.52281140*10^{-1}
+```
+
+```math
+x = \frac{(p-log(t))}{scale(t)}
+```
 
 #### probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2)
 > El ejemplo expuesto en resultados tiene la forma: probabilidad(A0,0,23,1000,1500).
@@ -63,13 +80,13 @@ la probabilidad de que el consumo de potencia esté entre 1000 y 1500 a todo el 
 
 #### prom_temporal(c,A0)
 >Esta funcion determina el promedio temporal para los valores
-de consumo MW, se calcula tanto el vcalor numerico sujeto a 
+de consumo MW, se calcula tanto el vcalor numerico sujeto a
 la funcion 'C' como el vector de promedio temporal para el
 data frame de las horas.
 
 #### ergodicidad(A0)
->Esta funcion determina la ergodicidad de la secuencia aleatoria 
-del consumo de MW que está en A0, utiliza el promedio temporal 
+>Esta funcion determina la ergodicidad de la secuencia aleatoria
+del consumo de MW que está en A0, utiliza el promedio temporal
 calculado anteriormente y mantiene los valores validos dentro
 del 5% de error.
 
