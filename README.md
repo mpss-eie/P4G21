@@ -118,20 +118,19 @@ Utilizando el promedio temporal del proceso. Para que un proceso se concidere er
 
 ```math
   R_{XY} = E[XY]
-```math
+```
 
-donde:
+> donde:
 
 ```math
     R_{XY}= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} xy f_X,_Y(x,y) dxdy 
 ```
- Por otro lado, la covarianza entre dos variables X y Y esta dada de la siguiente manera:
+ >Por otro lado, la covarianza entre dos variables X y Y esta dada de la siguiente manera:
 
 ```math
   C_{XY}= R_{XY} - E[X]E[Y]
-```math
-
-donde:
+```
+> donde:
 
 ```math
     C_{XY} = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} (x-X)(y-Y) f_X,_Y(x,y) dxdy 
@@ -156,7 +155,7 @@ El espectro de densidad de potencia se define de la siguiente manera:
 
 ```math
     S_{xx}(f) = \lim_{T \to \infty} \frac{E[ X_T(\omega)^{2}]}{2T}
-    ```
+    
 ```
 Donde P_{xx} puede ser calculado mediante la siguiente integral en el dominio de la frecuencia:
 
