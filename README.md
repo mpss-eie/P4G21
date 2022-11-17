@@ -42,6 +42,7 @@ estas variables contienen el polinomio de orden 7 necesario para construir la P(
 ```math
 c(t) = 4.57199340*10^{-8}*t^7 - 5.00399491*10^{-6}*t^6 + 2.09913189*10^{-4}*t^5 - 4.32940873*10^{-3}*t^4 + 4.60710835*10^{-2}*t^3 - 2.33562409*10^{-1}*t^2 + 3.68052322*10^{-1}*t + 6.52281140*10^{-1}
 ```
+
 ```math
 log(t) = 2.85391745*10^{-5}*t^7 - 2.39480688*10^{-3}*t^6 + 7.39492808*10^{-2}*t^5 - 9.84120610*10^{-1}*t^4 +
   3.91618298*t^3 + 2.19374917*10^{1}*t^2 - 1.03908708*10^{2}*t + 1.03447704*10^{3}
@@ -98,18 +99,17 @@ del 5% de error.
 #### ergodicidad(A0,C71)
 > '------------El proceso no es ergódico----------'
 
-# Paquete `Momentos' 
+# Paquete `Momentos`
 
-En este paquete se implementan dos funciones: autocorrelación y autocovarianza. En el caso de la primera función, se desea encontrar la correlación entre variables aleatorias por lo cual se considera t1 y t2. El procedimiento consiste en brindar como parámetros dos horas determinadas, además se guardan los datos de consumo en las variables establecidas. 
+> En este paquete se implementan dos funciones: autocorrelación y autocovarianza. En el caso de la primera función, se desea encontrar la correlación entre variables aleatorias por lo cual se considera t1 y t2. El procedimiento consiste en brindar como parámetros dos horas determinadas, además se guardan los datos de consumo en las variables establecidas.
 
-Para el caso de la segunda función, se desea encontrar la covarianza entre variables aleatorias por lo cual se considera t1 y t2. Al igual que la función mencionada anteriormente, se toman en cuenta como parámetros dos horas determinadas, para obtener los datos correspondientes.
+> Para el caso de la segunda función, se desea encontrar la covarianza entre variables aleatorias por lo cual se considera t1 y t2. Al igual que la función mencionada anteriormente, se toman en cuenta como parámetros dos horas determinadas, para obtener los datos correspondientes.
 
 ## Resultados `Momentos'
 
 
-# Paquete `Espectro'
+# Paquete `Espectro`
 
-En el caso de este paquete la función psd se encarga de calcular la densidad espectral de potencia de un proceso aleatorio. Para esto se considera como parámetros el dataFrame de consumo de energía, la hora inicial y la hora final. También esta función se encarga de generar la lista de datos como muestra con una cantidad definida de puntos en este caso 800. Con estos puntos se logra crear una gráfica que represente la densidad espectral de potencia para los datos que fueron seleccionados.
+> En el caso de este paquete la función psd se encarga de calcular la densidad espectral de potencia de un proceso aleatorio. Para esto se considera como parámetros el dataFrame de consumo de energía, la hora inicial y la hora final. También esta función se encarga de generar la lista de datos como muestra con una cantidad definida de puntos en este caso 800. Con estos puntos se logra crear una gráfica que represente la densidad espectral de potencia para los datos que fueron seleccionados.
 
-## Resultados `Espectro'
-
+## Resultados `Espectro`
