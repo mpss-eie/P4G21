@@ -97,3 +97,19 @@ del 5% de error.
 >0.10358971035885703
 #### ergodicidad(A0,C71)
 > '------------El proceso no es ergódico----------'
+
+# Paquete `Momentos' 
+
+En este paquete se implementan dos funciones: autocorrelación y autocovarianza. En el caso de la primera función, se desea encontrar la correlación entre variables aleatorias por lo cual se considera t1 y t2. El procedimiento consiste en brindar como parámetros dos horas determinadas, además se guardan los datos de consumo en las variables establecidas. 
+
+Para el caso de la segunda función, se desea encontrar la covarianza entre variables aleatorias por lo cual se considera t1 y t2. Al igual que la función mencionada anteriormente, se toman en cuenta como parámetros dos horas determinadas, para obtener los datos correspondientes.
+
+## Resultados `Momentos'
+
+
+# Paquete `Espectro'
+
+En el caso de este paquete la función psd se encarga de calcular la densidad espectral de potencia de un proceso aleatorio. Para esto se considera como parámetros el dataFrame de consumo de energía, la hora inicial y la hora final. También esta función se encarga de generar la lista de datos como muestra con una cantidad definida de puntos en este caso 800. Con estos puntos se logra crear una gráfica que represente la densidad espectral de potencia para los datos que fueron seleccionados.
+
+## Resultados `Espectro'
+
