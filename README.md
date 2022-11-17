@@ -120,7 +120,7 @@ Utilizando el promedio temporal del proceso. Para que un proceso se concidere er
 >Resultados generados:  
 > '------------El proceso no es ergódico----------'
 
-# Paquete `Momentos`
+## Módulo `Momentos`
 
 >En este paquete se implementan dos funciones: autocorrelación y autocovarianza. En el caso de la primera función, se desea encontrar la correlación entre variables aleatorias por lo cual se considera t1 y t2. El procedimiento consiste en brindar como parámetros dos horas determinadas, además se guardan los datos de consumo en las variables establecidas. 
 
@@ -159,7 +159,7 @@ Utilizando el promedio temporal del proceso. Para que un proceso se concidere er
 >La Autocovarianza entre las horas 3 y 12:
 1957.7249063051345.
 
-# Paquete `Espectro`
+## Módulo `Espectro`
 
 >En el caso de este paquete la función psd se encarga de calcular la densidad espectral de potencia de un proceso aleatorio. Para esto se considera como parámetros el dataFrame de consumo de energía, la hora inicial y la hora final. También esta función se encarga de generar la lista de datos como muestra con una cantidad definida de puntos en este caso 800. Con estos puntos se logra crear una gráfica que represente la densidad espectral de potencia para los datos que fueron seleccionados.
 
