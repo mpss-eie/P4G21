@@ -92,8 +92,17 @@ del 5% de error.
 
 ## Resultados `estacionaridad`
 #### WSS(A0)
->Serie temporal estacionaria en setido amplio.
+>Al ingresar los valores del parametro A0 se evalua la función para que no supere 
+Serie temporal estacionaria en setido amplio.
 #### prom_temporal(c,A0)
->0.10358971035885703
+>La función del promedio temporal se define como:
+
+```math
+x = A\left [ P(t) \right ]
+```
+>Y para los parametros evaluados la función retorna el valor de:
+0.10358971035885703
 #### ergodicidad(A0,C71)
+>La función de ergodicidad determina si el proceso analizado es ergódico o no.
+Utilizando el promedio temporal del proceso. Para que un proceso se concidere ergódico debe.  
 > '------------El proceso no es ergódico----------'
