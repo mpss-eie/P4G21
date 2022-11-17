@@ -1,37 +1,39 @@
-def psd():
-    import matplotlib.pyplot as plt
-    import numpy as np
-    import requests
+ # librerías
+import json
+import requests
+import pandas as pd 
+from pandas import json_normalize
+from fitter import Fitter
+import numpy as np
+from scipy import stats
+from scipy.stats import gamma
+import matplotlib.pyplot as plt
 
-# Se obtendrá el espectro de potencia para una hora determinada
-# en todos los días del año, por lo cual es necesario definir un array
-# (psd) para todas las potencias posibles en el intervalo de tiempo establecido (hora determinada).
-
-hora_determinada= int(input("Hora empleada como muestra: "))
-if hora_determinada < 10: # Se implementa un if-else para que el usuario pueda establecer una hora en punto como muestra
-    hora_determinada = "%02d" % (hora_determinada,)
-else:
-      hora_determinada= str(hora_determinada)
-      
-# Se prosigue a crear un array con los datos de la hora determinada, para tomar en cuenta todas las potencias posibles.
-mw_hora = [] 
-print("El espectro de potencia para la hora determinada es", hora_determinada)
-
-# Se utiliza un for para considerar todas las potencias de los datos y pasar por cada uno.
-for i in range(len(datos["data"])): 
+def psd(datos_df, hora):
+   
+    # Protección contra errores
+    if (hora < 0) or (hora > 23):
+        error = 'El programa está trabajando con valores inválidos de tiempo.'
+        return error
+    else:
+        # Crea un dataframe para una hora especifica con los datos brindados
+        def datos_hora(hora):
+            if hora > 9:
+                hora = '{}:00:00.0'.format(hora)
+            else:
+                hora = '0{}:00:00.0'.format(hora)
+            consumo_pot = datos_df[datos_df['fechaHora'].str.contains(hora)]
+            del consumo_pot['MW_P']
+            return consumo_pot
+        # En esta parte se crea una función muestra para una hora determinada que representa la
+        # densidad espectral de potencia
+        muestra = datos_hora(hora).assign(Index=
+                        range(len(datos_hora(hora)))).set_index('Index')['MW']
+        # Se grafica la funcion muestra con 800 puntos
+        plt.psd(muestra, 800, 1./0.01)
+        plt.xlabel('Frecuencia')
+        plt.ylabel('Densidad Espectral')
+        plt.show()
+        return 'Se muestra la gráfica de la densidad espectral'
     
-    # Se considera la posición (10:14), debido a que representa en espacio donde se especifica la hora establecida de los datos.
-      horas = datos["data"][i]["fecha_Hora"][10:14] 
-      
-# Se aplica un if, en caso de que se de la coincidencia en la cual: la hora determinada por el usuario sea igual a la hora de los datos dado por el data.
-if hora_determinada== horas: 
-    mw2= datos["data"][i]["MW"]
-mw_hora.append(mw2)
-
-# Obtención de la densidad de potencia espectral con base a la hora establecida
-     dt= 0.01
-plt.psd (mw_hora, 512, 1./dt, color = "Blue")
-plt.xlabel('Frequency')
-plt.ylabel('Psd (db)')
-plt.suptitle('Densidad de Potencia Espectral para una determinada hora', fontweight = "bold")
-plt.show()
+    
