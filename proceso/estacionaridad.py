@@ -25,13 +25,15 @@ def wss(A0):
     print("----------Resultados de Dickey-fuller:----------")
     DF_DICKEYFULLER = adfuller(A0, autolag='AIC')
     DF_SALIDA = pd.Series(DF_DICKEYFULLER[0:4], index=[
-                          'Test Statistic', 'p-value', '#lags used', 'number of observations used'])
+        'Test Statistic', 'p-value', '#lags used', 'observations'])
     for key, value in DF_DICKEYFULLER[4].items():
         DF_SALIDA['critical value (%s)' % key] = value
 
     if (DF_SALIDA[5] < DF_SALIDA[0]):
-        print('Serie temporal no estacionaria en setido amplio.\n\tTest estático:\t',
+        print('Serie temporal no estacionaria en setido amplio.')
+        print('\tTest estático:\t',
               DF_SALIDA[0], '\n\t5%:\t\t', DF_SALIDA[5])
+
     else:
         print('Serie temporal estacionaria en setido amplio.')
     return '------------------------------------------------'
@@ -41,7 +43,7 @@ def prom_temporal(C, A0):
     '''Función prom_temporal().
 
     Esta funcion determina el promedio temporal para los valores
-    de consumo MW, se calcula tanto el vcalor numerico sujeto a 
+    de consumo MW, se calcula tanto el vcalor numerico sujeto a
     la funcion 'C' como el vector de promedio temporal para el
     data frame de las horas.
 
@@ -70,8 +72,8 @@ def prom_temporal(C, A0):
 def ergodicidad(A0, PROMEDIO_TEMPORAL):
     '''Función ergodicidad().
 
-    Esta funcion determina la ergodicidad de la secuencia aleatoria 
-    del consumo de MW que está en A0, utiliza el promedio temporal 
+    Esta funcion determina la ergodicidad de la secuencia aleatoria
+    del consumo de MW que está en A0, utiliza el promedio temporal
     calculado anteriormente y mantiene los valores validos dentro
     del 5% de error.
 

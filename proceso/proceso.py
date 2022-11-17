@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def demanda():
-    '''Función demanda().
+    """Función demanda().
 
     Esta función se encarga de retornar un dataFrame con
     los datos de consumo de potencia almacenados en un archivo .json.
@@ -23,23 +23,25 @@ def demanda():
     df : dataFrame
         Retorna los datos obtenidos del archivo .json en un dataFrame
         de pandas.
-    '''
-    #Extraccion del los datos del archivo datos.json
+    """
+    # Extraccion del los datos del archivo datos.json
     with open('datos.json') as file:
         datos = json.load(file)
-    #Creacion del dataFrame a partir de un archivo json.
+    # Creacion del dataFrame a partir de un archivo json.
     df = pd.DataFrame(datos['data'])
     return df
+
 
 def densidad(datos_df):
     '''Función densidad().
 
-    Esta función encarga de retornar el polinomio de orden 7 de los parámetros de la distribución
-    genlogistic c, log y scale, tomando en cuenta todas las horas del día, a partir de DataFrame
-    de la función demanda(), se extrae la potencia para cada hora del día, con Fitter se obtiene los
-    parámetros c, log y scale para la hora especifica, los cuales son almacenados, para
-    posterior ingresarlos en la función polyfit de numpy y obtener el polinomio de orden 7,
-    con el cual se construye P(t).
+    Esta función encarga de retornar el polinomio de orden 7 de los parámetros
+    de la distribución genlogistic c, log y scale, tomando en cuenta todas las
+    horas del día, a partir de DataFrame de la función demanda(), se extrae la
+    potencia para cada hora del día, con Fitter se obtiene los parámetros c,
+    log y scale para la hora especifica, los cuales son almacenados, para
+    posterior ingresarlos en la función polyfit de numpy y obtener el polinomio
+    de orden 7, con el cual se construye P(t).
 
     Parameters
     ----------
@@ -56,11 +58,14 @@ def densidad(datos_df):
     param : diccionario
         contiene los parámetros c, log, scale a utiliar.
     c : array
-        Variable con los párametros de la distribución para c con todas las horas del día.
+        Variable con los párametros de la distribución para c con todas las
+        horas del día.
     log : array
-        Variable con los párametros de la distribución para log con todas las horas del día.
+        Variable con los párametros de la distribución para log con todas las
+        horas del día.
     scale : array
-        Variable con los párametros de la distribución para scale con todas las horas del día.
+        Variable con los párametros de la distribución para scale con todas las
+        horas del día.
 
     Returns
     -------
@@ -77,12 +82,13 @@ def densidad(datos_df):
     log = []
     scale = []
 
-    # Ciclo para obtener la información y parámetros c, log y scale de todas las horas.
+    # Ciclo para obtener la información y parámetros de todas las horas.
     for hora in range(0, 24):
         datos_hora = []
-        # Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
+# Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
         for i in range(hora, len(datos_df.index), 24):
-            # El dato de una hora especifica aparecerá cada 24 filas, por las 24 horas del días.
+            # El dato de una hora especifica aparecerá cada 24 filas,
+            # por las 24 horas del días.
             # Almacena la potencia en la hora especifica
             datos_hora.append(float(datos_df.MW[i]))
 
@@ -122,12 +128,14 @@ def densidad(datos_df):
 
     return c_t, log_t, scale_t
 
+
 def grafica(datos_df):
     '''Función grafica().
 
-    Esta función encarga de almacenar los parámetros c, log y scale para posterior
-    utilizarlos para generar la función pdf que permite la visualización de todas
-    las graficas a distintas horas del día, donde la potencia es su común denominador.
+    Esta función encarga de almacenar los parámetros c, log y scale para
+    posterior utilizarlos para generar la función pdf que permite la
+    visualización de todas las graficas a distintas horas del día, donde la
+    potencia es su común denominador.
 
     Parameters
     ----------
@@ -144,11 +152,14 @@ def grafica(datos_df):
     param : diccionario
         contiene los parámetros c, log, scale a utilizar.
     c : array
-        Variable con los parámetros de la distribución para c con todas las horas del día.
+        Variable con los parámetros de la distribución para c con todas las
+        horas del día.
     log : array
-        Variable con los parámetros de la distribución para log con todas las horas del día.
+        Variable con los parámetros de la distribución para log con todas las
+        horas del día.
     scale : array
-        Variable con los parámetros de la distribución para scale con todas las horas del día.
+        Variable con los parámetros de la distribución para scale con todas las
+        horas del día.
     '''
 
     # Arreglos para almacenar los datos de las distribuciones.
@@ -156,12 +167,13 @@ def grafica(datos_df):
     log = []
     scale = []
 
-    # Ciclo para obtener la información y parámetros c, log y scale de todas las horas.
+    # Ciclo para obtener la información y parámetros de todas las horas.
     for hora in range(0, 24):
         datos_hora = []
-        # Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
+# Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
         for i in range(hora, len(datos_df.index), 24):
-            # El dato de una hora especifica aparecerá cada 24 filas, por las 24 horas del días.
+            # El dato de una hora especifica aparecerá cada 24 filas, por las
+            # 24 horas del días.
             # Almacena la potencia en la hora especifica
             datos_hora.append(float(datos_df.MW[i]))
 
@@ -265,14 +277,16 @@ def grafica(datos_df):
 
     plt.show()
 
+
 def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
     '''Función grafica().
 
-    Esta función encarga de obtener la probabilidad de ocurrencia donde un evento
-    tenga una potencia entre dos rangos (potencia_1 y potencia_2), entre ciertas horas especificas
-    (hora_1,hora_2). Esto lo hace mediante la cdf de cada una de las horas del día, tomando
-    las horas específicas y sumando la probabilidad entre los rangos de potencia, para finalmente
-    obtener el la probabilidad de ocurrencia.
+    Esta función encarga de obtener la probabilidad de ocurrencia donde un
+    evento tenga una potencia entre dos rangos (potencia_1 y potencia_2), entre
+    ciertas horas especificas (hora_1,hora_2). Esto lo hace mediante la cdf de
+    cada una de las horas del día, tomando las horas específicas y sumando la
+    probabilidad entre los rangos de potencia, para finalmente obtener el la
+    probabilidad de ocurrencia.
 
     Parameters
     ----------
@@ -289,23 +303,27 @@ def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
     param : diccionario
         contiene los parámetros c, log, scale a utiliar.
     c : array
-        Variable con los parámetros de la distribución para c con todas las horas del día.
+        Variable con los parámetros de la distribución para c con todas las
+        horas del día.
     log : array
-        Variable con los parámetros de la distribución para log con todas las horas del día.
+        Variable con los parámetros de la distribución para log con todas las
+        horas del día.
     scale : array
-        Variable con los parámetros de la distribución para scale con todas las horas del día.
+        Variable con los parámetros de la distribución para scale con todas las
+        horas del día.
     '''
     # Arreglos para almacenar los datos de las distribuciones.
     c = []
     log = []
     scale = []
 
-    # Ciclo para obtener la información y parámetros c, log y scale de todas las horas.
+    # Ciclo para obtener la información y parámetros  de todas las horas.
     for hora in range(0, 24):
         datos_hora = []
-        # Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
+# Ciclo para recorrer todo el dataFrame en búsqueda de las hora especificada
         for i in range(hora, len(datos_df.index), 24):
-            # El dato de una hora especifica aparecerá cada 24 filas, por las 24 horas del días.
+            # El dato de una hora especifica aparecerá cada 24 filas,
+            # por las 24 horas del días.
             # Almacena la potencia en la hora especifica
             datos_hora.append(float(datos_df.MW[i]))
 
@@ -329,11 +347,14 @@ def probabilidad(datos_df, hora_1, hora_2, potencia_1, potencia_2):
     # Cantidad de horas sumadas
     repeticion_horas = 0
 
-    # Ciclo para recorrer el rango de horas, y extraer la probabilidad de cada una
-    # de ellas al rango de potencia especificado.
+    # Ciclo para recorrer el rango de horas, y extraer la probabilidad de cada
+    # una de ellas al rango de potencia especificado.
+    genlogistic_p1 = genlogistic.cdf(potencia_1, c[i], log[i], scale[i])
+    genlogistic_p2 = genlogistic.cdf(potencia_2, c[i], log[i], scale[i])
+
     for i in range(hora_1, hora_2):
-        sumatoria_horas = sumatoria_horas + (genlogistic.cdf(potencia_2, c[i], log[i], scale[i]) -
-                                             genlogistic.cdf(potencia_1, c[i], log[i], scale[i]))
+        sumatoria_horas = sumatoria_horas + (genlogistic_p2 -
+                                             genlogistic_p1)
         repeticion_horas = repeticion_horas + 1
 
     # Se divide la sumatoria de las horas entre la cantidad de horas sumadas.
